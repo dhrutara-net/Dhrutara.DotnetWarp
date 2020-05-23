@@ -10,6 +10,8 @@ stages:
   jobs:
   - job: 'PublishToArtifactsJob'
     displayName: 'Publish to Artifacts'
+    variables:
+      deployFolder: '${{parameters.deployRootPath}}\$(Build.BuildId).$(System.StageAttempt).$(System.JobAttempt)\app'
     pool: Default
     steps:
     - checkout: self
@@ -17,13 +19,16 @@ stages:
       displayName: 'Download DotNet Core SDK ${{parameters.dotNetCoreSDKVersion}}'
       inputs:
         packageType: sdk
-        version: dotNetCoreSDKVersion
+        version: '${{parameters.dotNetCoreSDKVersion}}'
     - task: PowerShell@2
       displayName: 'Warp it'
       inputs:
         targetType: 'inline'
         script: |
-          New-Item -Path "$(deployFolder)\" -ItemType Directory
+          New-Item -Path "$(deployFolder)" -ItemType Directory
           dotnet new tool-manifest --force
           dotnet tool update dotnet-warp --global
           dotnet dotnet-warp "$(Build.SourcesDirectory)\Dhrutara.DotnetWarp\Dhrutara.DotnetWarp.csproj" --output "$(deployFolder)\Dhrutara.DotnetWarp.exe" --verbose -p:configuration ${{parameters.buildConfiguration}} -p:runtime  ${{parameters.runtimeIdentifier}}
+
+
+          
