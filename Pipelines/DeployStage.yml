@@ -20,14 +20,7 @@ stages:
       inputs:
         packageType: sdk
         version: '${{parameters.dotNetCoreSDKVersion}}'
-    - task: PowerShell@2
-      displayName: 'Warp it'
-      inputs:
-        targetType: 'inline'
-        script: |
-          New-Item -Path "$(deployFolder)" -ItemType Directory
-          dotnet new tool-manifest --force
-
+    
     - task: PowerShell@2
       displayName: 'Warp it'
       inputs:
