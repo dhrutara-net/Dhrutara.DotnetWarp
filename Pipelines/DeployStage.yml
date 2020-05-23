@@ -2,7 +2,7 @@ parameters:
   dotNetCoreSDKVersion: '3.1.101'
   publishRootPath: ''
   buildConfiguration: ''
-  runtimeIdentifier: ''
+  useRuntimeIdentifier: ''
 
 stages:
 - stage: 'PublishToFolder'
