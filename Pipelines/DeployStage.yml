@@ -25,5 +25,5 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          dotnet tool install dotnet-warp --global
+          dotnet tool update dotnet-warp --global
     
