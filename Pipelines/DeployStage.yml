@@ -1,37 +1,31 @@
 parameters:
   dotNetCoreSDKVersion: '3.1.101'
-  deployRootPath: ''
+  publishRootPath: ''
   buildConfiguration: ''
-  runtimeIdentifier: ''
+  useRuntimeIdentifier: ''
 
 stages:
 - stage: 'PublishToFolder'
   displayName: 'Publish to Folder'
   jobs:
-  - deployment: deploy
-    displayName: 'Deploy'
+  - job: 'PublishToArtifactsJob'
+    displayName: 'Publish to Artifacts'
     variables:
-      deployFolder: '${{parameters.deployRootPath}}\$(Build.BuildId).$(System.StageAttempt).$(System.JobAttempt)\app'
-    environment: 
-      name: 'Ramesh'
-      resourceType: 'virtualMachine'
-      tags: 'rameshk0991'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - checkout: self
-          - task: UseDotNet@2
-            displayName: 'Download DotNet Core SDK ${{parameters.dotNetCoreSDKVersion}}'
-            inputs:
-              packageType: sdk
-              version: dotNetCoreSDKVersion
-          - task: PowerShell@2
-            displayName: 'Warp it'
-            inputs:
-              targetType: 'inline'
-              script: |
-                New-Item -Path "$(deployFolder)\" -ItemType Directory
-                dotnet new tool-manifest --force
-                dotnet tool update dotnet-warp --global
-                dotnet dotnet-warp "$(Build.SourcesDirectory)\Dhrutara.DotnetWarp\Dhrutara.DotnetWarp.csproj" --output "$(deployFolder)\Dhrutara.DotnetWarp.exe" --verbose -p:configuration ${{parameters.buildConfiguration}} -p:runtime  ${{parameters.runtimeIdentifier}}
+      deployFolder: '${{parameters.publishRootPath}}\$(Build.BuildId).$(System.StageAttempt).$(System.JobAttempt)\app'
+    pool: Default
+    steps:
+    - checkout: self
+    - task: UseDotNet@2
+      displayName: 'Download DotNet Core SDK ${{parameters.dotNetCoreSDKVersion}}'
+      inputs:
+        packageType: sdk
+        version: '${{parameters.dotNetCoreSDKVersion}}'
+    - task: PowerShell@2
+      displayName: 'Warp it'
+      inputs:
+        targetType: 'inline'
+        script: |
+          New-Item -Path "$(deployFolder)" -ItemType Directory
+          dotnet tool update dotnet-warp --global
+          C:\agent\_work\_tool\dotnet\dotnet-warp.exe "$(Build.SourcesDirectory)\Dhrutara.DotnetWarp\Dhrutara.DotnetWarp.csproj" --output "$(deployFolder)\Dhrutara.DotnetWarp.exe" --verbose -p:configuration="${{parameters.buildConfiguration}}" -p:runtime="${{parameters.useRuntimeIdentifier}}"
+    
