@@ -25,5 +25,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
+          New-Item -Path "$(deployFolder)" -ItemType Directory
           dotnet tool update dotnet-warp --global
+          dotnet dotnet-warp "$(Build.SourcesDirectory)\Dhrutara.DotnetWarp\Dhrutara.DotnetWarp.csproj" --output "$(deployFolder)\Dhrutara.DotnetWarp.exe" --verbose -p:configuration="${{parameters.buildConfiguration}}" -p:runtime="${{parameters.useRuntimeIdentifier}}"
     
