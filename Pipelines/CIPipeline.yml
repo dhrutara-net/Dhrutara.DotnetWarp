@@ -8,6 +8,7 @@ variables:
   useRuntimeIdentifier: 'win-x64'
   publishRootPath: '\\files\Production\DBOrchestrator'
 
+stages:
 - template: DeployStage.yml
   parameters:
     buildConfiguration: '$(buildConfiguration)'
