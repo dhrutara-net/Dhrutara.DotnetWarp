@@ -5,7 +5,7 @@ trigger:
 
 variables:
   buildConfiguration: 'release'
-  runtimeIdentifier:'win-x64'
+  runtimeIdentifier: 'win-x64'
   publishRootPath: '\\files\Production\DBOrchestrator'
 
 stages:
