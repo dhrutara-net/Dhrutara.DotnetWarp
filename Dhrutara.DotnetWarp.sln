@@ -6,6 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dhrutara.DotnetWarp", "Dhrutara.DotnetWarp\Dhrutara.DotnetWarp.csproj", "{272E8A49-2932-43AF-8CDE-7E94AC96B0D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{078F89F7-990C-40A7-BD92-4F54ACB5F024}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipeline", "Pipeline", "{36D07853-2164-4615-BA72-60AFB30E6817}"
 	ProjectSection(SolutionItems) = preProject
 		Pipelines\BuildStage.yml = Pipelines\BuildStage.yml
 		Pipelines\CIPipeline.yml = Pipelines\CIPipeline.yml
@@ -13,6 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Pipelines\MasterPipeline.yml = Pipelines\MasterPipeline.yml
 		Pipelines\PullRequestPipeline.yml = Pipelines\PullRequestPipeline.yml
 		Pipelines\TestStage.yml = Pipelines\TestStage.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{7CC7FE47-61A4-4E4E-A821-A43A33964E3E}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
 	EndProjectSection
 EndProject
 Global
@@ -28,6 +35,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{36D07853-2164-4615-BA72-60AFB30E6817} = {078F89F7-990C-40A7-BD92-4F54ACB5F024}
+		{7CC7FE47-61A4-4E4E-A821-A43A33964E3E} = {078F89F7-990C-40A7-BD92-4F54ACB5F024}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4A08D7E-07D2-475C-839F-5351775ED679}
