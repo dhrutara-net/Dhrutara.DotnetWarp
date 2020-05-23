@@ -1,6 +1,6 @@
 parameters:
   dotNetCoreSDKVersion: '3.1.101'
-  deployRootPath: ''
+  publishRootPath: ''
   buildConfiguration: ''
   runtimeIdentifier: ''
 
@@ -11,7 +11,7 @@ stages:
   - job: 'PublishToArtifactsJob'
     displayName: 'Publish to Artifacts'
     variables:
-      deployFolder: '${{parameters.deployRootPath}}\$(Build.BuildId).$(System.StageAttempt).$(System.JobAttempt)\app'
+      deployFolder: '${{parameters.publishRootPath}}\$(Build.BuildId).$(System.StageAttempt).$(System.JobAttempt)\app'
     pool: Default
     steps:
     - checkout: self
@@ -28,7 +28,7 @@ stages:
           New-Item -Path "$(deployFolder)" -ItemType Directory
           dotnet new tool-manifest --force
           dotnet tool install dotnet-warp --version 1.1.0
-          dotnet dotnet-warp $(Build.SourcesDirectory)\Dhrutara.DotnetWarp\Dhrutara.DotnetWarp.csproj --output '$(deployFolder)\Dhrutara.DotnetWarp.exe' --verbose -p:configuration='${{parameters.buildConfiguration}}' -p:runtime='${{parameters.runtimeIdentifier}}'
+          dotnet dotnet-warp "$(Build.SourcesDirectory)\Dhrutara.DotnetWarp\Dhrutara.DotnetWarp.csproj" --output "$(deployFolder)\Dhrutara.DotnetWarp.exe" --verbose -p:configuration="${{parameters.buildConfiguration}}" -p:runtime="${{parameters.runtimeIdentifier}}"
 
 
           
