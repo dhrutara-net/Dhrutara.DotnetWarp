@@ -1,0 +1,28 @@
+name: $(BuildDefinitionName).$(Date:yyyyMMdd)$(Rev:.r)
+
+resources:
+  repositories:
+  - repository: 'PowerShellScripts'
+    type: git
+    name: Home/BessemerMgmt.PowerShellScripts
+
+trigger:
+- ci
+
+variables:
+  buildConfiguration: 'Release'
+  publishRootPath: '\\files\Production\BessemerMgmt.DbOrchestrator'
+  environmentName: 'CI'
+
+stages:
+- template: BuildStage.yml
+  parameters:
+    buildConfiguration: '$(buildConfiguration)'
+
+- template: TestStage.yml
+  parameters:
+    buildConfiguration: '$(buildConfiguration)'
+
+- template: DeployStage.yml
+  parameters:
+    buildConfiguration: '$(buildConfiguration)'

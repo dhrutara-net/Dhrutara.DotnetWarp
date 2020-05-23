@@ -1,0 +1,15 @@
+name: $(BuildDefinitionName)-PR.$(Build.SourceBranch)$(Rev:.r)
+
+trigger: none
+
+variables:
+  buildConfiguration: 'Debug'
+
+stages:
+- template: BuildStage.yml
+  parameters:
+    buildConfiguration: '$(buildConfiguration)'
+
+- template: TestStage.yml
+  parameters:
+    buildConfiguration: '$(buildConfiguration)'

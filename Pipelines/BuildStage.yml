@@ -1,0 +1,31 @@
+parameters:
+  dotNetCoreSDKVersion: '3.1.101'
+  buildConfiguration: ''
+  runtimeIdentifier: ''
+
+stages:
+ - stage: 'Build'
+   displayName: 'Build Solution'
+   jobs:
+   - job: 'Build'
+     displayName: 'Build Solution'
+     pool: Default
+     workspace:
+      clean: all
+     steps:
+     - task: UseDotNet@2
+       displayName: 'Download DotNet Core SDK ${{parameters.dotNetCoreSDKVersion}}'
+       inputs:
+        packageType: sdk
+        version: '${{parameters.dotNetCoreSDKVersion}}'
+     - task: DotNetCoreCLI@2
+       displayName: 'Restore Packages'
+       inputs:
+        command: restore
+        feedsToUse: config
+        nugetConfigPath: nuget.config
+     - task: DotNetCoreCLI@2
+       displayName: 'Build (${{parameters.buildConfiguration}})'
+       inputs:
+        command: build
+        arguments: '--no-restore --configuration ${{parameters.buildConfiguration}} --runtime ${{parameters.runtimeIdentifier}}'
