@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dhrutara.DotnetWarp", "Dhrutara.DotnetWarp\Dhrutara.DotnetWarp.csproj", "{272E8A49-2932-43AF-8CDE-7E94AC96B0D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{078F89F7-990C-40A7-BD92-4F54ACB5F024}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{272E8A49-2932-43AF-8CDE-7E94AC96B0D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{272E8A49-2932-43AF-8CDE-7E94AC96B0D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{272E8A49-2932-43AF-8CDE-7E94AC96B0D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{272E8A49-2932-43AF-8CDE-7E94AC96B0D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A4A08D7E-07D2-475C-839F-5351775ED679}
+	EndGlobalSection
+EndGlobal
