@@ -2,7 +2,7 @@ parameters:
   dotNetCoreSDKVersion: '3.1.101'
   publishRootPath: ''
   buildConfiguration: ''
-  useRuntimeIdentifier: ''
+  runtimeIdentifier: ''
 
 stages:
 - stage: 'PublishToFolder'
@@ -27,5 +27,5 @@ stages:
         script: |
           New-Item -Path "$(deployFolder)" -ItemType Directory
           dotnet tool update dotnet-warp --global
-          dotnet-warp "$(Build.SourcesDirectory)\Dhrutara.DotnetWarp\Dhrutara.DotnetWarp.csproj" --output "$(deployFolder)\Dhrutara.DotnetWarp.exe" --verbose -p:configuration="${{parameters.buildConfiguration}}" -p:runtime="${{parameters.useRuntimeIdentifier}}"
+          dotnet-warp "$(Build.SourcesDirectory)\Dhrutara.DotnetWarp\Dhrutara.DotnetWarp.csproj" --output "$(deployFolder)\Dhrutara.DotnetWarp.exe" --verbose -p:configuration="${{parameters.buildConfiguration}}" -p:runtime="${{parameters.runtimeIdentifier}}"
     
