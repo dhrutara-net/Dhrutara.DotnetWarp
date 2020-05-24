@@ -27,5 +27,5 @@ stages:
         script: |
           New-Item -Path "$(deployFolder)" -ItemType Directory
           dotnet tool update dotnet-warp --global
-          C:\agent\_work\_tool\dotnet\dotnet-warp.exe "$(Build.SourcesDirectory)\Dhrutara.DotnetWarp\Dhrutara.DotnetWarp.csproj" --output "$(deployFolder)\Dhrutara.DotnetWarp.exe" --verbose -p:configuration="${{parameters.buildConfiguration}}" -p:runtime="${{parameters.useRuntimeIdentifier}}"
+          dotnet-warp "$(Build.SourcesDirectory)\Dhrutara.DotnetWarp\Dhrutara.DotnetWarp.csproj" --output "$(deployFolder)\Dhrutara.DotnetWarp.exe" --verbose -p:configuration="${{parameters.buildConfiguration}}" -p:runtime="${{parameters.useRuntimeIdentifier}}"
     
