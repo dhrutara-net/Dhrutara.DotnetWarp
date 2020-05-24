@@ -5,12 +5,12 @@ trigger:
 
 variables:
   buildConfiguration: 'release'
-  useRuntimeIdentifier: 'win-x64'
+  runtimeIdentifier: 'win-x64'
   publishRootPath: '\\files\Production\DBOrchestrator'
 
 stages:
 - template: DeployStage.yml
   parameters:
     buildConfiguration: '$(buildConfiguration)'
-    useRuntimeIdentifier: '$(useRuntimeIdentifier)'
+    runtimeIdentifier: '$(runtimeIdentifier)'
     publishRootPath: '$(publishRootPath)'
